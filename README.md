@@ -11,7 +11,7 @@ Requires
 - scipy (1.6.0)
 ### 1. Read data into SeasonData class:
 ~~~
->> from season_polar_plots import SeasonData
+>>> from season_polar_plots import SeasonData
 ~~~
 ### SeasonData(data, year_start, year_end, t_res = 'daily') 
 #
