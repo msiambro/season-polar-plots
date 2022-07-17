@@ -11,7 +11,7 @@ Requires
 ~~~
 from season_polar_plots import SeasonData
 ~~~
-### SeasonData(data, year_start, year_end, t_res = 'daily') 
+### SeasonData(data, year_start, year_end, t_res) 
 #
 | Arguments  |   |
 | ------ | ------ |

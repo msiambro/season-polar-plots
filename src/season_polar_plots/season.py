@@ -19,8 +19,12 @@ class SeasonData:
         if isinstance(data, pd.Series):
             data_ = pd.DataFrame(data)
             self.df = data_
-        else:
+        elif isinstance(data, pd.DataFrame):
             self.df = data
+        else:
+            raise TypeError('Input data must be pandas Series or DataFrame with DatetimeIndex')
+        if not isinstance(self.df.index, pd.core.indexes.datetimes.DatetimeIndex):
+            raise TypeError('DatetimeIndex for input data required')
         self.scaletime = pd.to_datetime('1704-01-01', format= '%Y-%m-%d')
         self.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         self.start_year = int(start_year)
@@ -30,7 +34,7 @@ class SeasonData:
     
    
     def t_theta(self, d):
-        "radian scaling functions for polar plots."
+        "radian scaling function for polar plots."
         return(d/366*(2 * np.pi))    
     
 
