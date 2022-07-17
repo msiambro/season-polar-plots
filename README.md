@@ -1,5 +1,7 @@
 ## __Seasonality polar plots__
- 
+~~~
+pip install season-polar-plots
+~~~
 This is a package to create polar plots for displaying seasonal trends in time series data.
 Requires
 - matplotlib (3.5.1)
@@ -9,7 +11,7 @@ Requires
 - scipy (1.6.0)
 ### 1. Read data into SeasonData class:
 ~~~
-from season_polar_plots import SeasonData
+>> from season_polar_plots import SeasonData
 ~~~
 ### SeasonData(data, year_start, year_end, t_res = 'daily') 
 #
