@@ -1,6 +1,6 @@
 [project]
 name = "season_polar_plots"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Marleen Schübl", email="marleen@schuebl.de" },
 ]
@@ -16,4 +16,4 @@ classifiers = [
 dependencies = ["matplotlib", "numpy", "pandas", "seaborn", "scipy"]
 
 [project.urls]
-"Homepage" = "https://github.com/msiambro"
+"Homepage" = "https://github.com/msiambro/season_polar_plots/"

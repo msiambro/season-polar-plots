@@ -1,10 +1,10 @@
 Metadata-Version: 2.1
 Name: season-polar-plots
-Version: 0.0.1
+Version: 0.0.2
 Summary: Create polar plots to display seasonal trends in time series data.
 Author-email: Marleen Schübl <marleen@schuebl.de>
 License: MIT
-Project-URL: Homepage, https://github.com/msiambro
+Project-URL: Homepage, https://github.com/msiambro/season_polar_plots/
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
@@ -12,7 +12,8 @@ Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
-## __Seasonality polar plots__ 
+## __Seasonality polar plots__
+ 
 This is a package to create polar plots for displaying seasonal trends in time series data.
 Requires
 - matplotlib (3.5.1)
@@ -21,6 +22,9 @@ Requires
 - seaborn (0.11.2)
 - scipy (1.6.0)
 ### 1. Read data into SeasonData class:
+~~~
+from season_polar_plots import SeasonData
+~~~
 ### SeasonData(data, year_start, year_end, t_res = 'daily') 
 #
 | Arguments  |   |
@@ -48,7 +52,7 @@ Requires
 | linreg | linreg=True plots linear regression (day in year ~ year) in polar projection (only for daily extreme values) |
 | start_month | start month for linear regression |
 
-__Returns__: Plot; for linreg=True: prints R² and p-values for slope and intercept
+__Returns__: Plot; if linreg=True prints R² and p-values for slope and intercept
 
 #### Obtain annual extreme values from daily time series:
 ### _self_.get_ev( mode)
