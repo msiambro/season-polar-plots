@@ -4,6 +4,16 @@ Created on Wed Jun  1 17:48:09 2022
 
 @author: Marleen
 """
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import linregress
+from scipy.stats import vonmises
+from scipy.stats import t
+from scipy.special import i0  
+import math
+
 class SeasonData:
     def __init__(self, data, start_year, end_year, t_res):
         if isinstance(data, pd.Series):
