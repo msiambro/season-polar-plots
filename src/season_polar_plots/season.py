@@ -158,7 +158,6 @@ class SeasonData:
         elif self.t_res == 'daily':
             data = self.get_ev(mode, linreg, start_month)
             x = self.t_theta(data['nday'])
-            #y = self.t_r(data.index, off)
             y = data.index
             im = ax.scatter(x, y, c=data['value'], cmap=col, alpha=a, s=psize, marker=pmarker)
             ax.set_ylim(min(y)-off, max(y) + (max(y)-min(y))*0.1)
@@ -177,7 +176,7 @@ class SeasonData:
             z = m_dat.T.values
             z = np.ma.masked_where(np.isnan(z),z)
             ax.grid(False)
-            ax.set_ylim(m_dat.index[0], m_dat.index[-1])
+            ax.set_ylim(m_dat.index[0], m_dat.index[-1]+1)
             im = ax.pcolormesh(theta, r, z, cmap = col, shading='flat')
             fig.colorbar(im, ax=ax, label=label, pad=0.2)
            
