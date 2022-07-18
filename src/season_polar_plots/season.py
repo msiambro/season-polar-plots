@@ -87,7 +87,7 @@ class SeasonData:
         return(m_vals)
     
     
-    def get_mgrid(self, mode='all'):
+    def get_mgrid(self, mode):
         """
         Function for monthly time-series
         Arguments:
@@ -120,7 +120,7 @@ class SeasonData:
         
     
         
-    def sp_plot(self, label, mode='all', rd_years = True, col = 'viridis_r', a = 1, psize= None, pmarker = None, nylabels=10, off=0, rlab_angle = 15, linreg = False, start_month = 1):
+    def sp_plot(self, mode='all', label=None, rd_years = True, col = 'viridis_r', a = 1, psize= None, pmarker = None, nylabels=10, off=0, rlab_angle = 15, linreg = False, start_month = 1):
         """
         Plot function for seasonality polar plots. 
         Arguments:
@@ -144,7 +144,6 @@ class SeasonData:
         if rd_years == False:
             data = self.get_ev(mode)
             x = self.t_theta(data['nday'])
-            #y = self.t_rx(data['values'], off)
             y = data['value']
             colors = pd.DataFrame({'Col': sns.color_palette(col, len(self.years)).as_hex()}, index = self.years)
             for year in self.years:
@@ -173,15 +172,15 @@ class SeasonData:
            
         elif self.t_res == 'monthly':
             data = self.get_mgrid(mode)
-            years_off = pd.DataFrame(index = np.linspace(self.start_year-off, self.start_year,1), columns= data.columns)
+            years_off = pd.DataFrame(index = list(range(self.start_year-off, self.start_year)), columns= data.columns)
             m_dat = pd.concat([years_off, data]) 
-            theta = np.array((len(m_dat)+1)*[np.linspace(0, 2*np.pi,13)]).T
-            r = np.array(13*[np.linspace(m_dat.index[0], m_dat.index[-1], (len(m_dat)+1))])
+            theta = np.array(len(m_dat)*[np.linspace(0, 2*np.pi,12)]).T
+            r = np.array(12*[np.linspace(m_dat.index[0]+0.5, m_dat.index[-1]+0.5, len(m_dat))])
             z = m_dat.T.values
             z = np.ma.masked_where(np.isnan(z),z)
-            ax.grid(False)
-            ax.set_ylim(m_dat.index[0], m_dat.index[-1]+1)
-            im = ax.pcolormesh(theta, r, z, cmap = col, shading='flat')
+            #ax.grid(False)
+            ax.set_ylim(m_dat.index[0]-0.5, m_dat.index[-1]+1)
+            im = ax.pcolormesh(theta, r, z, cmap = col, shading='nearest')
             fig.colorbar(im, ax=ax, label=label, pad=0.2)
            
         if linreg == True:
@@ -246,7 +245,3 @@ class SeasonData:
         else:
             return(kappa, mu, mu_nday)
        
-    
-
-
-

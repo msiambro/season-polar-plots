@@ -1,6 +1,6 @@
 [project]
 name = "season_polar_plots"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
   { name="Marleen Schübl", email="marleen@schuebl.de" },
 ]
