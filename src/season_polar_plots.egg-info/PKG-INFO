@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: season-polar-plots
-Version: 0.0.4
+Version: 0.0.5
 Summary: Create polar plots to display seasonal trends in time series data.
 Author-email: Marleen Schübl <marleen@schuebl.de>
 License: MIT
