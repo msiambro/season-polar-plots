@@ -174,9 +174,11 @@ class SeasonData:
             data = self.get_mgrid(mode)
             years_off = pd.DataFrame(index = list(range(self.start_year-off, self.start_year)), columns= data.columns)
             m_dat = pd.concat([years_off, data]) 
-            theta = np.array(len(m_dat)*[np.linspace(0, 2*np.pi,12)]).T
-            r = np.array(12*[np.linspace(m_dat.index[0]+0.5, m_dat.index[-1]+0.5, len(m_dat))])
+            theta = np.array(len(m_dat)*[np.linspace(0, 2*np.pi,13)]).T
+            r = np.array(13*[np.linspace(m_dat.index[0]+0.5, m_dat.index[-1]+0.5, len(m_dat))])
             z = m_dat.T.values
+            z = np.vstack([z, np.empty(shape=(1,len(m_dat)))])
+            z[-1,:] = np.nan
             z = np.ma.masked_where(np.isnan(z),z)
             #ax.grid(False)
             ax.set_ylim(m_dat.index[0]-0.5, m_dat.index[-1]+1)
