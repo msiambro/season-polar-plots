@@ -1,7 +1,9 @@
 Examples
 ================
 
-### Trends in monthly values as polar grid plot
+##### 1. Trends in monthly values as polar grid plot
+
+Example temperature data 1970 - 2020
 
 ``` python
 import pandas as pd
@@ -18,7 +20,7 @@ plt.show()
 
 ![](testRmarkdown_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-##### Example: development Tmax in June:
+Trend Tmax in June:
 
 ``` python
 import pymannkendall as mk
@@ -38,13 +40,26 @@ plt.show()
 
 ![](testRmarkdown_files/figure-gfm/unnamed-chunk-2-3.png)<!-- -->
 
-### Shift in occurrence of extreme values
+##### 2. Variable in the course of individual years (variable on radius axis):
+
+``` python
+twd = SeasonData(tw['t'], 2018, 2020, 'daily')
+twd.sp_plot('all', rd_years = False, col = 'tab10_r', label ='°C')
+plt.ylim(-20, 32);
+plt.show()
+```
+
+![](testRmarkdown_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->
+
+##### 3. Shift in occurrence of extreme values
+
+Example data annual peak flow Qmax
 
 ``` python
 dt_f = lambda x: pd.to_datetime(x, format = '%d.%m.%Y')
-qmax = pd.read_csv('ExampleQmax.csv', sep=';', converters = {'Date': dt_f}, index_col = 'Date')
+qmax = pd.read_csv('ExampleQmax.csv', sep = ';', converters = {'Date': dt_f}, index_col = 'Date')
 q = SeasonData(qmax, 1977, 2021, t_res='daily')
-q.sp_plot(mode='all', pmarker = 'X', nylabels=10,off=5, label = 'Q$_{max}$ (mm day$^{-1}$)', linreg=True)
+q.sp_plot(mode='all', pmarker='X', nylabels=10, off=5, label='Q$_{max}$ (m$^{3}$ s$^{-1}$)', linreg=True)
 ```
 
     ## R2 = 0.4532333490820837, p_slope = 4.03910064180579e-07, p_intercept = 1.9616872564428065e-07
@@ -53,9 +68,9 @@ q.sp_plot(mode='all', pmarker = 'X', nylabels=10,off=5, label = 'Q$_{max}$ (mm d
 plt.show()
 ```
 
-![](testRmarkdown_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->
+![](testRmarkdown_files/figure-gfm/unnamed-chunk-4-7.png)<!-- -->
 
-### Von Mises-distribution of extreme values
+##### 4. Von Mises-distribution of extreme values
 
 ``` python
 q.von_mises(mode='all', col_hist='gray', col_vm = 'darkred')
@@ -67,4 +82,4 @@ q.von_mises(mode='all', col_hist='gray', col_vm = 'darkred')
 plt.show()
 ```
 
-![](testRmarkdown_files/figure-gfm/unnamed-chunk-4-7.png)<!-- -->
+![](testRmarkdown_files/figure-gfm/unnamed-chunk-5-9.png)<!-- -->
