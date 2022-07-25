@@ -1,7 +1,7 @@
 Examples
 ================
 
-##### 1. Trends in monthly values as polar grid plot
+#### 1. Trends in monthly values as polar grid plot
 
 Example temperature data 1970 - 2020
 
@@ -40,7 +40,7 @@ plt.show()
 
 ![](testRmarkdown_files/figure-gfm/unnamed-chunk-2-3.png)<!-- -->
 
-##### 2. Variable in the course of individual years (variable on radius axis):
+#### 2. Variable in the course of individual years (variable on radius axis)
 
 ``` python
 twd = SeasonData(tw['t'], 2018, 2020, 'daily')
@@ -51,7 +51,7 @@ plt.show()
 
 ![](testRmarkdown_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->
 
-##### 3. Shift in occurrence of extreme values
+#### 3. Shift in occurrence of extreme values
 
 Example data annual peak flow Qmax
 
@@ -70,7 +70,7 @@ plt.show()
 
 ![](testRmarkdown_files/figure-gfm/unnamed-chunk-4-7.png)<!-- -->
 
-##### 4. Von Mises-distribution of extreme values
+#### 4. Von Mises-distribution of extreme values
 
 ``` python
 q.von_mises(mode='all', col_hist='gray', col_vm = 'darkred')
