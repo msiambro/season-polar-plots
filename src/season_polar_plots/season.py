@@ -81,7 +81,7 @@ class SeasonData:
             ddiv = (start_month-1)*30
             mvals_new = np.zeros(shape=(len(m_vals.index), len(m_vals.columns)))
             for i,nday in enumerate(m_vals.nday):
-                mvals_new[i,0] = nday - ddiv if nday >= ddiv else nday - ddiv
+                mvals_new[i,0] = nday - ddiv if nday >= ddiv else nday - ddiv + 366
             mvals_new[:,1] = m_vals['value']
             m_vals = pd.DataFrame(mvals_new, index=m_vals.index, columns = ['nday', 'value'])
         return(m_vals)
@@ -154,9 +154,10 @@ class SeasonData:
             order = math.floor(math.log(rmax, 10))
             dec = order*(-1) if order < 0 else 0          
             yt = np.linspace(np.round(min(data['value']), dec), np.round(max(data['value']), dec), nylabels)
-            yts = [str("%.{0}f".format(dec) % y)+label for y in yt]
-            ax.set_rgrids(np.linspace(min(y), max(y), nylabels), labels=yts, fontsize=10, angle=rlab_angle)
-            ax.set_yticklabels(yts, horizontalalignment = "center", verticalalignment = "center")
+            if not label == None:
+                yts = [str("%.{0}f".format(dec) % y)+label for y in yt]
+                ax.set_rgrids(np.linspace(min(y), max(y), nylabels), labels=yts, fontsize=10, angle=rlab_angle)
+                ax.set_yticklabels(yts, horizontalalignment = "center", verticalalignment = "center")
             
         elif self.t_res == 'daily':
             data = self.get_ev(mode, linreg, start_month)
@@ -180,8 +181,10 @@ class SeasonData:
             z = np.vstack([z, np.empty(shape=(1,len(m_dat)))])
             z[-1,:] = np.nan
             z = np.ma.masked_where(np.isnan(z),z)
-            #ax.grid(False)
+            ax.grid(False)
             ax.set_ylim(m_dat.index[0]-0.5, m_dat.index[-1]+1)
+            pos=ax.get_rlabel_position()
+            ax.set_rlabel_position(pos-10)
             im = ax.pcolormesh(theta, r, z, cmap = col, shading='nearest')
             fig.colorbar(im, ax=ax, label=label, pad=0.2)
            
